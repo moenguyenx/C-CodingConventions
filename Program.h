@@ -36,6 +36,7 @@ typedef enum
 	E_CANNOT_ALLOC_MEM = 3,
 	E_ARR_IS_FULL = 4,
 	E_NO_ELEMENT = 5,
+	E_ELEMENT_NOT_EXIST = 6,
 } statusResult;
 
 /*======================================================================================================================
@@ -119,7 +120,7 @@ statusResult decreSort(int** arr, int* size);
 * @param    Pointer to dynamic array and size of array
 * @pre      Allocated array
 */
-void search(int** arr, int* size);
+statusResult search(int** arr, int* size);
 
 /*
 * @brief    Exit program

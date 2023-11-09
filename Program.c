@@ -209,26 +209,42 @@ statusResult decreSort(int** arr, int* size)
 }
 
 
-void search(int** arr, int* size)
+statusResult search(int** arr, int* size)
 {
-    int x, i;
-    int count = 0;
-    printf("Nhap so can tim: ");
-	scanf("%d", &x);
-    for(i=0; i<*size; i++)
+	statusResult status;
+	
+	if(*arr == NULL)
 	{
-        if(x == (*arr)[i]) 
-		count++;
-    }
-
-    if(count == 0)
+		printf("Please create an array\n");
+		status = E_ARR_EMPTY;
+	}
+	else
 	{
-        printf("Khong ton tai %d trong day\n", x);
-    } 
-	else 
-	{
-        printf("Ton tai %d so %d trong day\n", count, x);
-    }
+		int x, i;
+	    int count = 0;
+	    
+	    printf("Nhap so can tim: ");
+		scanf("%d", &x);
+		
+	    for(i=0; i<*size; i++)
+		{
+	        if(x == (*arr)[i]) 
+			count++;
+	    }
+	
+	    if(count == 0)
+		{
+	        printf("Khong ton tai %d trong day\n", x);
+	        status = E_ELEMENT_NOT_EXIST;
+	    } 
+		else 
+		{
+	        printf("Ton tai %d so %d trong day\n", count, x);
+	        status = E_OK;
+	    }
+	}
+	Sleep(1000);
+    return status;
 }
 
 void exitProgram(int** dynamicArray, bool* state)
