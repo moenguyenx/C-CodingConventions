@@ -70,7 +70,7 @@ int main(void)
         switch (input)
         {
 	        case 'e':
-	            exitProgram(&dynamicArray, &exit);
+	            (void)exitProgram(&dynamicArray, &exit); //(void) sd khi ham khong can resultStatus
 	            break;
 	        case 'c':
 	            createArray(&dynamicArray, &n);

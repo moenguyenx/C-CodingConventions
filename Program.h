@@ -28,6 +28,15 @@ extern "C"{
 /*======================================================================================================================
  *                                                      ENUMS
 ======================================================================================================================*/
+typedef enum
+{
+	E_OK = 0,
+	E_PRAM_WRONG = 1,
+	E_ARR_EMPTY = 2,
+	E_CANNOT_ALLOC_MEM = 3,
+	E_ARR_IS_FULL = 4,
+	E_NO_ELEMENT = 5,
+} statusResult;
 
 /*======================================================================================================================
  *                                              STRUCTURES AND OTHER TYPEDEFS
@@ -56,7 +65,7 @@ void printMenu(void);
 * @param    Pointer to dynamic array and Size of array
 * @pre      N/A
 */
-void printArray(int** arr, int *size);
+statusResult printArray(int** arr, int *size);
 
 /*
 * @brief    Create Array
@@ -65,7 +74,7 @@ void printArray(int** arr, int *size);
 * @param    None
 * @pre      N/A
 */
-void createArray(int** dynamicArray, int* n);
+statusResult createArray(int** dynamicArray, int* n);
 
 /*
 * @brief    Insert Element
@@ -74,41 +83,41 @@ void createArray(int** dynamicArray, int* n);
 * @param    Pointer to dynamic array and size of array
 * @pre      Allocated array
 */
-void insert(int** arr, int* size);
+statusResult insert(int** arr, int* size);
 
 /*
 * @brief    Delete Element
 * @details  Delete an element in user-input's index
 *
 * @param    Pointer to dynamic array and size of array
-* @pre      N/A
+* @pre      Allocated array
 */
-void deleteElement(int** arr, int* size);
+statusResult deleteElement(int** arr, int* size);
 
 /*
 * @brief    Increase Sort
 * @details  Sort an array in increment order using bubble sort
 *
 * @param    Pointer to dynamic array and size of array
-* @pre      N/A
+* @pre      Allocated array
 */
-void increSort(int** arr, int* size);
+statusResult increSort(int** arr, int* size);
 
 /*
 * @brief    Decrease Sort
 * @details  Sort an array in decrement order using bubble sort
 *
 * @param    Pointer to dynamic array and size of array
-* @pre      N/A
+* @pre      Allocated array
 */
-void decreSort(int** arr, int* size);
+statusResult decreSort(int** arr, int* size);
 
 /*
 * @brief    Search
 * @details  Search an element in array
 *
 * @param    Pointer to dynamic array and size of array
-* @pre      N/A
+* @pre      Allocated array
 */
 void search(int** arr, int* size);
 

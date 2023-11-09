@@ -17,13 +17,14 @@ void printMenu()
     printf("----\n");
 }
 
-//bug
-void printArray(int** arr, int* size)
+
+statusResult printArray(int** arr, int* size)
 {  
+	statusResult status;
     if(*arr == NULL)
     {
-        printf("Day trong\n");
-        Sleep(500);
+        printf("Array empty\n");
+        status = E_ARR_EMPTY;
     } 
     else 
     {
@@ -35,11 +36,14 @@ void printArray(int** arr, int* size)
         printf("\n");
     }
     Sleep(1500);
+    return status;
 }
 
 
-void createArray(int** dynamicArray, int* n)
+statusResult createArray(int** dynamicArray, int* n)
 {         
+	statusResult status;
+	
     if (*dynamicArray != NULL) 
     {
     	free(*dynamicArray);
@@ -52,15 +56,18 @@ void createArray(int** dynamicArray, int* n)
     if (*dynamicArray == NULL) 
     {
         printf("Memory not allocated\n");
+        status = E_CANNOT_ALLOC_MEM;
     } 
     else 
 	{
 		printf("Array created\n");
-		Sleep(500);
+		status = E_OK;
 	}
+	Sleep(500);
+	return status;
 }
 
-//Check loi func 
+ 
 //void insert(int** arr, int* size)
 //{
 //    int i;
@@ -71,78 +78,134 @@ void createArray(int** dynamicArray, int* n)
 //    }
 //}
 
-void insert(int** arr, int* size)
+statusResult insert(int** arr, int* size)
 {
-    static int i;
-    
-    if(i < *size)
-    {
-    	printf("Nhap a[%d]: ", i);
-    	scanf("%d", &(*arr)[i]);
-    	i++;
+	statusResult status;
+	
+	if(*arr == NULL)
+	{
+		printf("Please create an array before inserting\n");
+		status = E_ARR_EMPTY;
 	}
 	else
 	{
-		printf("Array da full\n");
-		Sleep(500);
+		static int i;
+    
+	    if(i < *size)
+	    {
+	    	printf("Nhap a[%d]: ", i);
+	    	scanf("%d", &(*arr)[i]);
+	    	i++;
+	    	status = E_OK;
+		}
+		else
+		{
+			printf("Array da full\n");
+			status = E_ARR_IS_FULL;
+		}
 	}
+    
+	Sleep(1000);
+	return status;
 }
 
 
-void deleteElement(int** arr, int* n)
+statusResult deleteElement(int** arr, int* n)
 {
-    int k, i;
-    printf("Nhap index muon xoa: "); 
-    scanf("%d", &k);
-    if (k <= *n-1 && k >= 0 )
+	statusResult status;
+	
+    if(*arr == NULL)
     {
-        for(i=k; i<*n; i++)
-        {
-            (*arr)[i] = (*arr)[i+1];
-        }
-        *n -= 1;
-    } 
-    else 
-    {
-        printf("Khong co phan tu k\n");
-        Sleep(500);
-    }
+    	printf("Empty array\n");
+    	status = E_ARR_EMPTY;
+	}
+	else
+	{			
+	    int k, i;
+	    printf("Nhap index muon xoa: "); 
+	    scanf("%d", &k);
+	    
+	    if (k <= *n-1 && k >= 0 )
+	    {
+	        for(i=k; i<*n; i++)
+	        {
+	            (*arr)[i] = (*arr)[i+1];
+	        }
+	        *n -= 1;
+	        status = E_OK;
+	    } 
+	    else 
+	    {	
+	        printf("Khong co phan tu k\n");
+	        status = E_NO_ELEMENT;
+	    }	
+	}
+	Sleep(1000);
+    return status;
 }
 
 
-void increSort(int** arr, int* size)
+statusResult increSort(int** arr, int* size)
 {
-    int i, j;
-    for(i = 0; i < *size; i++)
+	statusResult status;
+	
+	if(*arr == NULL)
 	{
-        for(j = i+1; j < *size; j++)
+		printf("Empty array\n");
+		status = E_ARR_EMPTY;
+	}
+	else
+	{
+		int i, j;
+	    for(i=0; i<*size; i++)
 		{
-            if( (*arr)[i] >= (*arr)[j] )
+	        for(j = i+1; j < *size; j++)
 			{
-                int temp = (*arr)[i];
-                (*arr)[i] = (*arr)[j];
-                (*arr)[j] = temp;
-            }
-        }
-    }
+	            if ( (*arr)[i] >= (*arr)[j] )
+				{
+	                int temp = (*arr)[i];
+	                (*arr)[i] = (*arr)[j];
+	                (*arr)[j] = temp;
+	            }
+	        }
+	    }
+	    printf("Sorted in Increment order\n");
+	    status = E_OK;
+	}
+	Sleep(1000);
+    return status;
 }
 
 
-void decreSort(int** arr, int* size)
+statusResult decreSort(int** arr, int* size)
 {
-    int i, j;
-    for(i=0; i<*size; i++)
+	statusResult status;
+	
+	if(*arr == NULL)
 	{
-        for(j = i+1; j < *size; j++)
+		printf("Empty array\n");
+		status = E_ARR_EMPTY;
+	}
+	else
+	{
+		int i, j;
+	    for(i=0; i<*size; i++)
 		{
-            if ( (*arr)[i] <= (*arr)[j] )
+	        for(j = i+1; j < *size; j++)
 			{
-                int temp = (*arr)[i];
-                (*arr)[i] = (*arr)[j];
-                (*arr)[j] = temp;
-            }
-        }
-    }
+	            if ( (*arr)[i] <= (*arr)[j] )
+				{
+	                int temp = (*arr)[i];
+	                (*arr)[i] = (*arr)[j];
+	                (*arr)[j] = temp;
+	            }
+	        }
+	    }
+	    printf("Sorted in Decrement order\n");
+	    status = E_OK;
+	}
+	Sleep(1000);
+    return status;
 }
 
 
