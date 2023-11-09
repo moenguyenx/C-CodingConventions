@@ -28,12 +28,20 @@ statusResult printArray(int** arr, int* size)
     } 
     else 
     {
-        int i;
-        for(i = 0; i<*size; i++)
-        {
-            printf(" %d", (*arr)[i]);
-        }
-        printf("\n");
+    	if(*size == 0)
+    	{
+    		printf("Array empty\n");
+        	status = E_ARR_EMPTY;
+		}
+		else
+		{
+			int i;
+	        for(i = 0; i<*size; i++)
+	        {
+	            printf(" %d", (*arr)[i]);
+	        }
+	        printf("\n");
+		}
     }
     Sleep(1500);
     return status;
