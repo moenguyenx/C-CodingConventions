@@ -42,6 +42,7 @@ statusResult printArray(int** arr, int* size)
 	        }
 	        printf("\n");
 		}
+		status = E_OK;
     }
     Sleep(1500);
     return status;
@@ -86,23 +87,22 @@ statusResult createArray(int** dynamicArray, int* n)
 //    }
 //}
 
-statusResult insert(int** arr, int* size)
+statusResult insert(const int* const arr, int size)
 {
 	statusResult status;
+	static int i;
 	
-	if(*arr == NULL)
+	if(arr == NULL)
 	{
 		printf("Please create an array before inserting\n");
 		status = E_ARR_EMPTY;
 	}
 	else
 	{
-		static int i;
-    
-	    if(i < *size)
+	    if(i < size)
 	    {
 	    	printf("Nhap a[%d]: ", i);
-	    	scanf("%d", &(*arr)[i]);
+	    	scanf("%d", &arr[i]);
 	    	i++;
 	    	status = E_OK;
 		}

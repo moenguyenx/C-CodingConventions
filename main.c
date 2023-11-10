@@ -79,7 +79,7 @@ int main(void)
 	            printArray(&dynamicArray, &n);
 	            break;
 	        case 'i':
-	            insert(&dynamicArray, &n);
+	            insert(&dynamicArray[0], n);
 	            break;
 	        case 'd':
 	            deleteElement(&dynamicArray, &n);
