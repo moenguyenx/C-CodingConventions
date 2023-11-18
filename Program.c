@@ -1,6 +1,12 @@
 #include "Program.h"
 
-
+/*
+* @brief    print Menu Choice
+* @details  Display Menu Choice to user
+*
+* @param    None
+* @pre      N/A
+*/
 void printMenu()
 {
     printf("*******************************************\n");
@@ -17,7 +23,13 @@ void printMenu()
     printf("----\n");
 }
 
-
+/*
+* @brief    print Array
+* @details  Display created array to user
+*
+* @param    Pointer to dynamic array and Size of array
+* @pre      N/A
+*/
 statusResult printArray(int** arr, int* size)
 {  
 	statusResult status;
@@ -48,7 +60,13 @@ statusResult printArray(int** arr, int* size)
     return status;
 }
 
-
+/*
+* @brief    Create Array
+* @details  Create dynamic array with n elements
+*
+* @param    None
+* @pre      N/A
+*/
 statusResult createArray(int** dynamicArray, int* n)
 {         
 	statusResult status;
@@ -87,6 +105,13 @@ statusResult createArray(int** dynamicArray, int* n)
 //    }
 //}
 
+/*
+* @brief    Insert Element
+* @details  Insert an element in to an array
+*
+* @param    Pointer to dynamic array and size of array
+* @pre      Allocated array
+*/
 statusResult insert(const int* const arr, int size)
 {
 	statusResult status;
@@ -117,7 +142,13 @@ statusResult insert(const int* const arr, int size)
 	return status;
 }
 
-
+/*
+* @brief    Delete Element
+* @details  Delete an element in user-input's index
+*
+* @param    Pointer to dynamic array and size of array
+* @pre      Allocated array
+*/
 statusResult deleteElement(int** arr, int* n)
 {
 	statusResult status;
@@ -152,7 +183,13 @@ statusResult deleteElement(int** arr, int* n)
     return status;
 }
 
-
+/*
+* @brief    Increase Sort
+* @details  Sort an array in increment order using bubble sort
+*
+* @param    Pointer to dynamic array and size of array
+* @pre      Allocated array
+*/
 statusResult increSort(int** arr, int* size)
 {
 	statusResult status;
@@ -184,7 +221,13 @@ statusResult increSort(int** arr, int* size)
     return status;
 }
 
-
+/*
+* @brief    Decrease Sort
+* @details  Sort an array in decrement order using bubble sort
+*
+* @param    Pointer to dynamic array and size of array
+* @pre      Allocated array
+*/
 statusResult decreSort(int** arr, int* size)
 {
 	statusResult status;
@@ -216,7 +259,13 @@ statusResult decreSort(int** arr, int* size)
     return status;
 }
 
-
+/*
+* @brief    Search
+* @details  Search an element in array
+*
+* @param    Pointer to dynamic array and size of array
+* @pre      Allocated array
+*/
 statusResult search(int** arr, int* size)
 {
 	statusResult status;
@@ -255,6 +304,13 @@ statusResult search(int** arr, int* size)
     return status;
 }
 
+/*
+* @brief    Exit program
+* @details  Free up memory and switch the state to false to exit the loop
+*
+* @param    Pointer to dynamic array and bool state of program
+* @pre      N/A
+*/
 void exitProgram(int** dynamicArray, bool* state)
 {	
 	free(*dynamicArray);
