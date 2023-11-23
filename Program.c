@@ -94,16 +94,6 @@ statusResult createArray(int** dynamicArray, int* n)
 	return status;
 }
 
- 
-//void insert(int** arr, int* size)
-//{
-//    int i;
-//    for(i=0; i<*size; i++)
-//	{
-//        printf("Nhap a[%d]: ", i);
-//        scanf("%d", &(*arr)[i]);
-//    }
-//}
 
 /*
 * @brief    Insert Element
@@ -152,7 +142,8 @@ statusResult insert(const int* const arr, int size)
 statusResult deleteElement(int** arr, int* n)
 {
 	statusResult status;
-	
+	int k, i;
+
     if(*arr == NULL)
     {
     	printf("Empty array\n");
@@ -160,7 +151,6 @@ statusResult deleteElement(int** arr, int* n)
 	}
 	else
 	{			
-	    int k, i;
 	    printf("Nhap index muon xoa: "); 
 	    scanf("%d", &k);
 	    
