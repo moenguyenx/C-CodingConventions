@@ -103,10 +103,11 @@ statusResult createArray(int** dynamicArray, int* n)
 * @param    Pointer to dynamic array and size of array
 * @pre      Allocated array
 */
-statusResult insert(const int* const arr, int size)
+statusResult insert(int* arr, int size)
 {
 	statusResult status;
 	static int i;
+	int temp, inputStatus;
 	
 	if(arr == NULL)
 	{
@@ -118,7 +119,16 @@ statusResult insert(const int* const arr, int size)
 	    if(i < size)
 	    {
 	    	printf("Nhap a[%d]: ", i);
-	    	scanf("%d", &arr[i]);
+	    	inputStatus = scanf("%d", &temp);
+	    	fflush(stdin);
+			if (inputStatus != 1)
+			{
+				printf("Invalid Input!");
+				status = E_INVALID_INPUT;
+				Sleep(1000);
+				return status;
+			}
+			arr[i] = temp;
 	    	i++;
 	    	status = E_OK;
 		}
@@ -319,5 +329,6 @@ statusResult defaultFunc()
 {
 	statusResult status = E_INVALID_INPUT;
 	printf("Invalid input. Try again\n");
+	Sleep(1000);
 	return status;
 }

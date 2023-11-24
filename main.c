@@ -96,9 +96,7 @@ int main(void)
 	        
 	        default:
 	            defaultFunc();
-	            Sleep(1000);
         }
-        
         
         system("cls");
     }

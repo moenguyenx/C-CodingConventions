@@ -85,7 +85,7 @@ statusResult createArray(int** dynamicArray, int* n);
 * @param    Pointer to dynamic array and size of array
 * @pre      Allocated array
 */
-statusResult insert(const int* const arr, int size);
+statusResult insert(int* arr, int size);
 
 /*
 * @brief    Delete Element
