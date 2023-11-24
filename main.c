@@ -54,7 +54,7 @@ extern "C" {
 int main(void) 
 {
 	bool exit = false;
-    int* dynamicArray;
+    int* dynamicArray = NULL;
     int n;
     
     while (!exit)
@@ -76,10 +76,10 @@ int main(void)
 	            createArray(&dynamicArray, &n);
 	            break;
 	        case 'p':
-	            printArray(&dynamicArray, &n);
+	            printArray(&dynamicArray, n);
 	            break;
 	        case 'i':
-	            insert(&dynamicArray[0], n);
+	            insert(dynamicArray, n);
 	            break;
 	        case 'd':
 	            deleteElement(&dynamicArray, &n);

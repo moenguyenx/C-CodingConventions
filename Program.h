@@ -66,13 +66,13 @@ void printMenu(void);
 * @param    Pointer to dynamic array and Size of array
 * @pre      N/A
 */
-statusResult printArray(int** arr, int *size);
+statusResult printArray(int** arr, int size);
 
 /*
 * @brief    Create Array
 * @details  Create dynamic array with n elements
 *
-* @param    None
+* @param    Pass in pointer to dynamic array and desire size
 * @pre      N/A
 */
 statusResult createArray(int** dynamicArray, int* n);

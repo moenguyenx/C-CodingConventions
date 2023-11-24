@@ -30,25 +30,26 @@ void printMenu()
 * @param    Pointer to dynamic array and Size of array
 * @pre      N/A
 */
-statusResult printArray(int** arr, int* size)
+statusResult printArray(int** arr, int size)
 {  
 	statusResult status;
+	int i;
+	
     if(*arr == NULL)
     {
-        printf("Array empty\n");
+        printf("Please create an array before printing\n");
         status = E_ARR_EMPTY;
     } 
     else 
     {
-    	if(*size == 0)
+    	if(size == 0)
     	{
     		printf("Array empty\n");
         	status = E_ARR_EMPTY;
 		}
 		else
 		{
-			int i;
-	        for(i = 0; i<*size; i++)
+	        for(i = 0; i<size; i++)
 	        {
 	            printf(" %d", (*arr)[i]);
 	        }
