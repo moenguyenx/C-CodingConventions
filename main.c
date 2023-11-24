@@ -95,7 +95,7 @@ int main(void)
 	            break;
 	        
 	        default:
-	            printf("Invalid input. Try again\n");
+	            defaultFunc();
 	            Sleep(1000);
         }
         

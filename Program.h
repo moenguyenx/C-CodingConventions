@@ -37,6 +37,7 @@ typedef enum
 	E_ARR_IS_FULL = 4,
 	E_NO_ELEMENT = 5,
 	E_ELEMENT_NOT_EXIST = 6,
+	E_INVALID_INPUT = 7
 } statusResult;
 
 /*======================================================================================================================
@@ -93,7 +94,7 @@ statusResult insert(const int* const arr, int size);
 * @param    Pointer to dynamic array and size of array
 * @pre      Allocated array
 */
-statusResult deleteElement(int** arr, int* size);
+statusResult deleteElement(int** arr, int* n);
 
 /*
 * @brief    Increase Sort
@@ -130,6 +131,15 @@ statusResult search(int** arr, int* size);
 * @pre      N/A
 */
 void exitProgram(int** dynamicArray, bool* state);
+
+/*
+* @brief    Input error
+* @details  Return error code if user input's is invalid
+*
+* @param    N/A
+* @pre      N/A
+*/
+statusResult defaultFunc();
 
 #ifdef __cplusplus
 }

@@ -307,3 +307,17 @@ void exitProgram(int** dynamicArray, bool* state)
 	free(*dynamicArray);
 	*state = true;
 }
+
+/*
+* @brief    Input error
+* @details  Return error if user input's is invalid
+*
+* @param    N/A
+* @pre      N/A
+*/
+statusResult defaultFunc()
+{
+	statusResult status = E_INVALID_INPUT;
+	printf("Invalid input. Try again\n");
+	return status;
+}
