@@ -1,0 +1,85 @@
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -Wall -Wextra -Werror -pedantic -std=c99
+
+# Directories
+SRCDIR = src
+INCDIR = include
+OBJDIR = obj
+BINDIR = output
+
+# Files
+SRC = $(wildcard $(SRCDIR)/*.c)
+OBJ = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRC))
+DEP = $(OBJ:.o=.d)
+
+# Targets
+TARGET = $(BINDIR)/program.exe
+
+# Phony targets
+.PHONY: all clean run
+
+# Default target
+all: $(TARGET)
+
+# Build target
+$(TARGET): $(OBJ)
+	@mkdir -p $(BINDIR)
+	$(CC) $(CFLAGS) $^ -o $@
+	@echo "Build complete."
+
+# Object files
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) -I$(INCDIR) -MMD -MP -c $< -o $@
+
+# Clean target
+clean:
+	@rm -rf $(OBJDIR) $(BINDIR)
+	@echo "Clean complete."
+
+# Run target
+run: $(TARGET)
+	@echo "Starting program..."
+	@echo "Start time: $$(date)"
+	./$(TARGET)
+	@echo "Stop time: $$(date)"
+
+# Include dependencies
+-include $(DEP)
+
+Here’s what the Makefile does:
+
+The CC variable specifies the compiler to use.
+The CFLAGS variable specifies the compiler flags to use.
+The SRCDIR, INCDIR, OBJDIR, and BINDIR variables specify the directories for source files, header files, object files, and binary files, respectively.
+The SRC variable uses the wildcard function to find all .c files in the SRCDIR directory.
+The OBJ variable uses the patsubst function to generate a list of object files from the source files.
+The DEP variable generates a list of dependency files for each object file.
+The TARGET variable specifies the name and location of the output file.
+The .PHONY target specifies the phony targets.
+The all target is the default target and builds the output file.
+The $(TARGET) target builds the output file from the object files.
+The $(OBJDIR)/%.o target compiles each .c file into an object file.
+The clean target removes all object files and the output file.
+The run target runs the output file and prints the start and stop times.
+To use this Makefile, create a new directory for your project and copy the Makefile into it. 
+Then, create src, include, and output directories in the project directory. 
+Put your .c files in the src directory and your .h files in the include directory. 
+To build the project, run make build. To clean up the project, run make clean. 
+To run the program, run make run.
+
+
+# program.exe: main.o Program.o
+# 	$(CC) $(CFLAGS) main.o Program.o -o program.exe
+
+# main.o: main.c
+# 	$(CC) $(CFLAGS) -c main.c -o main.o
+
+# Program.o: Program.c
+# 	$(CC) $(CFLAGS) -c Program.c -o Program.o
+
+# clean:
+# 	rm main.o Program.o
