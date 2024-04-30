@@ -15,12 +15,13 @@ OBJ_DIR = obj
 BIN_DIR = output
 
 # Files
+#--------------------
 # 'wildcard' function: substitution reference, replacing one substring with another
 # The SRC variable uses the wildcard function to find all .c files in the SRC_DIR directory
-#######
+#--------------------
 # 'patsubst' function: $(patsubst PATTERN, REPLACEMENT, TEXT)
 # The OBJ variable uses the patsubst function to generate a list of object files from the source files.
-#######
+#--------------------
 # The DEP variable generates a list of dependency files for each object file
 SRC = $(wildcard $(SRC_DIR)/*.c)
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
@@ -54,6 +55,7 @@ $(TARGET): $(OBJ)
 
 # Object files
 # The $(OBJDIR)/%.o target compiles each .c file into an object file.
+# The -MMD and -MP flags together generate Makefiles for us
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I$(INC_DIR) -MMD -MP -c $< -o $@ 
@@ -74,19 +76,3 @@ run: $(TARGET)
 
 # Include dependencies
 -include $(DEP)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
