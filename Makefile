@@ -68,11 +68,12 @@ clean:
 
 # Run target
 # The run target runs the output file and prints the start and stop times.
+DATE_CMD = powershell -Command "Get-Date -Format 'yyyy-MM-dd HH:mm:ss'"
 run: $(TARGET)
 	@echo "Starting program..."
-	@echo "Start time: $$(date)"
+	@echo "Start time: $(shell $(DATE_CMD))"
 	./$(TARGET)
-	@echo "Stop time: $$(date)"
+	@echo "Stop time: $(shell $(DATE_CMD))"
 
 # Include dependencies
 -include $(DEP)
