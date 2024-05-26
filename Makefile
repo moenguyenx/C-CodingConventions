@@ -4,7 +4,7 @@ CC = gcc
 
 # Compiler Flags
 # The CFLAGS variable specifies the compiler flags to use.
-CFLAGS = -Wall -Wextra -Werror -pedantic -std=c99
+CFLAGS = -Wall -Wextra -Werror -pedantic 
 
 # Directories
 # The SRC_DIR, INC_DIR, OBJ_DIR, and BIN_DIR variables specify the directories- 
@@ -47,9 +47,8 @@ all: $(TARGET)
 # $< evaluates to first prerequisite
 # $^ evaluates to all prerequisites
 # @ prevent from printing out the command to console
-# The -p flag will create nested directories, but only if they don't exist already.
 $(TARGET): $(OBJ)
-	@mkdir -p $(BIN_DIR) 
+	@if not exist $(BIN_DIR) mkdir $(BIN_DIR)
 	$(CC) $(CFLAGS) $^ -o $@
 	@echo "Build Complete."
 
@@ -57,13 +56,14 @@ $(TARGET): $(OBJ)
 # The $(OBJDIR)/%.o target compiles each .c file into an object file.
 # The -MMD and -MP flags together generate Makefiles for us
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
+	@if not exist $(OBJ_DIR) mkdir $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I$(INC_DIR) -MMD -MP -c $< -o $@ 
 
 # Clean target
 # The clean target removes all object files and the output file.
 clean:
-	@rm -rf $(OBJ_DIR) $(BIN_DIR)
+	@if exist $(OBJ_DIR) rd /s /q $(OBJ_DIR)
+	@if exist $(BIN_DIR) rd /s /q $(BIN_DIR)
 	@echo "Clean complete."
 
 # Run target
